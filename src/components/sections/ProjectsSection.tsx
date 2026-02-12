@@ -5,34 +5,22 @@ import useScrollAnimation from "@/hooks/useScrollAnimation";
 
 const projects = [
   {
-    title: "Multi-Tenant ERP",
-    description: "Enterprise resource planning system with isolated tenant data, invoicing, and inventory management.",
-    repoUrl: "https://github.com/example/erp-system"
+    title: "Books API",
+    description: "Full-featured REST API with user auth, reviews/ratings, real-time WebSocket updates, GraphQL endpoint, Redis caching, rate limiting, and 253+ passing tests.",
+    tech: ["FastAPI", "PostgreSQL", "Redis", "SQLAlchemy", "GraphQL", "WebSockets", "JWT", "OAuth", "Docker"],
+    repoUrl: "https://github.com/FabioPita18/books-api-fastapi"
   },
   {
-    title: "CRM Platform",
-    description: "Customer relationship management tool with pipeline tracking, analytics, and automated follow-ups.",
-    repoUrl: "https://github.com/example/crm-platform"
+    title: "Developer Dashboard",
+    description: "Visualises GitHub contributions, language breakdown, top repos, and activity heatmaps with PostgreSQL-backed caching. 49 tests.",
+    tech: ["FastAPI", "React 18", "TypeScript", "Tailwind CSS", "PostgreSQL", "TanStack Query", "Recharts"],
+    repoUrl: "https://github.com/FabioPita18/developer-dashboard"
   },
   {
-    title: "REST API Gateway",
-    description: "Centralized API gateway built with FastAPI, featuring rate limiting, auth, and request routing.",
-    repoUrl: "https://github.com/example/api-gateway"
-  },
-  {
-    title: "React Dashboard",
-    description: "Interactive admin dashboard with real-time charts, data tables, and role-based access control.",
-    repoUrl: "https://github.com/example/react-dashboard"
-  },
-  {
-    title: "Task Automation Engine",
-    description: "Background task processing system using Celery and Redis for scheduled and event-driven jobs.",
-    repoUrl: "https://github.com/example/task-engine"
-  },
-  {
-    title: "Auth Microservice",
-    description: "JWT-based authentication service with OAuth2 support, MFA, and session management.",
-    repoUrl: "https://github.com/example/auth-service"
+    title: "E-Commerce Product Catalog",
+    description: "Product catalog with categories, advanced search/filtering, shopping cart with session persistence, order management, JWT auth, and admin panel.",
+    tech: ["Django 5.0", "DRF", "React 18", "TypeScript", "Material UI", "PostgreSQL", "Docker"],
+    repoUrl: "https://github.com/FabioPita18/ecommerce-product-catalog"
   }
 ];
 
@@ -134,25 +122,32 @@ const ProjectsSection = () => {
                   href={project.repoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex-shrink-0 w-[300px] p-6 rounded-2xl border-[3px] border-primary bg-card hover:border-accent transition-all duration-500 group ${
+                  className={`flex-shrink-0 w-[300px] p-6 rounded-2xl border-[3px] border-primary bg-card hover:border-accent transition-all duration-300 ease-out group ${
                     carouselVisible
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-8"
                   }`}
-                  style={{ transitionDelay: `${index * 100}ms` }}
+                  style={{ transitionDelay: carouselVisible ? '0ms' : `${index * 100}ms` }}
                   onClick={(e) => {
                     if (isDragging) e.preventDefault();
                   }}
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <h3 className="text-lg font-bold text-foreground group-hover:text-accent transition-colors duration-300">
+                    <h3 className="text-lg font-bold text-foreground group-hover:text-accent transition-colors duration-200 ease-out">
                       {project.title}
                     </h3>
-                    <Github className="w-5 h-5 text-muted-foreground group-hover:text-accent group-hover:scale-110 transition-all duration-300 flex-shrink-0 ml-2" />
+                    <Github className="w-5 h-5 text-muted-foreground group-hover:text-accent group-hover:scale-110 transition-all duration-200 ease-out flex-shrink-0 ml-2" />
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                     {project.description}
                   </p>
+                  <div className="flex flex-wrap gap-1.5 mt-auto">
+                    {project.tech.map((t) => (
+                      <span key={t} className="px-2 py-0.5 bg-muted/20 text-muted-foreground text-xs font-mono">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </a>
               ))}
             </div>

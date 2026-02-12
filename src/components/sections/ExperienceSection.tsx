@@ -3,20 +3,35 @@ import useScrollAnimation from "@/hooks/useScrollAnimation";
 
 const experiences = [
   {
-    title: "Full Stack Developer",
-    company: "Multi-Tenant ERP/CRM Development",
-    period: "2020 - Present",
-    duration: "4+ years",
-    description: "Built and maintained a comprehensive multi-tenant ERP/CRM system from the ground up, serving multiple business clients with isolated data and customizable workflows.",
+    title: "Full Stack Engineer",
+    company: "Bitserf, Johannesburg",
+    period: "April 2022 – Present",
+    duration: "3+ years",
+    description: "Sole developer designing and building Acumen, a multi-tenant ERP platform (183,000-line monorepo, 1,000+ source files).",
     achievements: [
-      "Architected multi-tenant database schema with PostgreSQL",
-      "Developed RESTful APIs using Django and FastAPI",
-      "Built responsive React frontend with TypeScript",
-      "Implemented complex business logic for invoicing, inventory, and CRM",
-      "Designed scalable authentication and authorization system",
-      "Optimized database queries reducing load times by 60%"
+      "Built complete REST API with FastAPI, SQLAlchemy 2.0, and PostgreSQL across 15+ business modules",
+      "Designed multi-schema database architecture with Alembic migrations and multi-tenant scoping",
+      "Implemented full JWT authentication system with licence-based module access control",
+      "Built React 18 frontend with TypeScript, Material UI, TanStack React Query",
+      "Created a YAML-driven page rendering system — 50+ config files generate full CRUD interfaces without page-specific code",
+      "Architected 6 MCP servers (72 tools, 58,000+ lines) automating entity generation, code scaffolding, and git workflows",
+      "Built a 9-step React/Vite wizard orchestrating all MCP servers for end-to-end entity creation",
+      "Configured Docker Compose orchestration with 4 containerised services"
     ],
-    technologies: ["Django", "FastAPI", "React", "TypeScript", "PostgreSQL", "Redis"]
+    technologies: ["FastAPI", "SQLAlchemy", "React 18", "TypeScript", "PostgreSQL", "Docker", "Material UI", "TanStack Query"]
+  },
+  {
+    title: "Software Development Intern",
+    company: "Compuways (Code College), Johannesburg",
+    period: "July 2021 – March 2022",
+    duration: "9 months",
+    description: "Intensive full-stack development programme covering multiple languages, frameworks, and database design.",
+    achievements: [
+      "Built full-stack apps using Java, Python, JavaScript, React with Redux, and Spring Framework",
+      "Designed normalised PostgreSQL schemas using UML and forward engineering",
+      "Built CRUD applications with React, Redux, Firebase, and Spring Boot"
+    ],
+    technologies: ["Java", "Python", "React", "Redux", "Spring Boot", "PostgreSQL", "Firebase"]
   }
 ];
 
@@ -53,27 +68,27 @@ const ExperienceSection = () => {
             />
 
             {experiences.map((exp, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className={`relative pl-8 md:pl-0 mb-12 transition-all duration-700 ${
-                  timelineVisible ? 'opacity-100 translate-x-0' : 'opacity-0 md:translate-x-8'
+                  timelineVisible ? 'opacity-100 translate-x-0' : `opacity-0 ${index % 2 === 0 ? 'md:translate-x-8' : 'md:-translate-x-8'}`
                 }`}
-                style={{ transitionDelay: '300ms' }}
+                style={{ transitionDelay: timelineVisible ? '0ms' : `${300 + index * 200}ms` }}
               >
                 {/* Timeline Dot - animated pulse */}
                 <div className={`absolute left-0 md:left-1/2 top-0 w-4 h-4 bg-primary border-4 border-background md:-translate-x-1/2 -translate-x-1/2 transition-all duration-500 ${
                   timelineVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
-                }`} style={{ transitionDelay: '500ms' }}>
+                }`} style={{ transitionDelay: timelineVisible ? '0ms' : `${500 + index * 200}ms` }}>
                   <div className="absolute inset-0 bg-primary animate-ping opacity-20" />
                 </div>
 
                 {/* Content Card */}
-                <div className={`md:w-[calc(50%-2rem)] md:ml-auto bg-background border border-border p-6 md:p-8 card-hover transition-all duration-700 ${
+                <div className={`md:w-[calc(50%-2rem)] ${index % 2 === 0 ? 'md:ml-auto' : 'md:mr-auto'} bg-background border border-border p-6 md:p-8 card-hover transition-all duration-300 ease-out ${
                   timelineVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`} style={{ transitionDelay: '400ms' }}>
+                }`} style={{ transitionDelay: timelineVisible ? '0ms' : `${400 + index * 200}ms` }}>
                   {/* Header */}
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="p-3 bg-primary/10 shrink-0 group-hover:bg-primary/20 transition-colors duration-300">
+                    <div className="p-3 bg-primary/10 shrink-0 transition-colors duration-200 ease-out">
                       <Briefcase className="w-6 h-6 text-primary" />
                     </div>
                     <div>
@@ -109,13 +124,13 @@ const ExperienceSection = () => {
                       {exp.achievements.map((achievement, i) => (
                         <li 
                           key={i} 
-                          className={`flex items-start gap-2 text-sm text-muted-foreground group transition-all duration-500 ${
+                          className={`flex items-start gap-2 text-sm text-muted-foreground group transition-all duration-300 ease-out ${
                             timelineVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
                           }`}
-                          style={{ transitionDelay: `${600 + i * 100}ms` }}
+                          style={{ transitionDelay: timelineVisible ? '0ms' : `${400 + i * 60}ms` }}
                         >
-                          <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300" />
-                          <span className="group-hover:text-foreground transition-colors duration-300">{achievement}</span>
+                          <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-200 ease-out" />
+                          <span className="group-hover:text-foreground transition-colors duration-200 ease-out">{achievement}</span>
                         </li>
                       ))}
                     </ul>
@@ -126,10 +141,10 @@ const ExperienceSection = () => {
                     {exp.technologies.map((tech, i) => (
                       <span 
                         key={tech}
-                        className={`px-3 py-1 bg-muted/20 text-muted-foreground text-xs font-mono hover:bg-primary/20 hover:text-primary transition-all duration-300 cursor-default ${
+                        className={`px-3 py-1 bg-muted/20 text-muted-foreground text-xs font-mono transition-all duration-300 cursor-default ${
                           timelineVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
                         }`}
-                        style={{ transitionDelay: `${900 + i * 50}ms` }}
+                        style={{ transitionDelay: timelineVisible ? '0ms' : `${600 + i * 40}ms` }}
                       >
                         {tech}
                       </span>

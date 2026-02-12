@@ -55,7 +55,7 @@ const Header = () => {
               <button
                 key={link.href}
                 onClick={() => scrollToSection(link.href)}
-                className={`relative text-sm font-medium font-display transition-colors duration-300 link-underline ${
+                className={`relative text-sm font-medium font-display transition-colors duration-200 ease-out link-underline ${
                   activeSection === link.href.substring(1)
                     ? 'text-foreground'
                     : 'text-muted-foreground hover:text-foreground'
@@ -65,10 +65,10 @@ const Header = () => {
                 {link.label}
               </button>
             ))}
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               onClick={() => scrollToSection("#contact")}
-              className="hover:scale-105 hover-glow transition-all duration-300"
+              className="font-display hover:scale-105 hover-glow transition-all duration-200 ease-out"
             >
               Hire Me
             </Button>
@@ -76,7 +76,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden absolute right-0 p-2 text-foreground hover:bg-muted/20 transition-colors duration-300"
+            className="md:hidden absolute right-0 p-2 text-foreground hover:bg-muted/20 transition-colors duration-200 ease-out"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -116,8 +116,8 @@ const Header = () => {
                 </button>
               ))}
               <div className="px-4 pt-2">
-                <Button 
-                  className="w-full hover:scale-[1.02] transition-transform duration-300" 
+                <Button
+                  className="w-full font-display hover:scale-[1.02] transition-transform duration-200 ease-out"
                   onClick={() => scrollToSection("#contact")}
                 >
                   Hire Me

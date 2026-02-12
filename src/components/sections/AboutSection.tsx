@@ -5,22 +5,22 @@ const highlights = [
   {
     icon: Layers,
     title: "Full Stack",
-    description: "End-to-end development from database design to polished UIs"
+    description: "End-to-end development from database architecture to polished React UIs"
   },
   {
     icon: Database,
-    title: "Multi-Tenant Systems",
-    description: "Built complex ERP/CRM from scratch serving multiple clients"
+    title: "Multi-Tenant ERP",
+    description: "183k-line monorepo with multi-schema PostgreSQL and licence-based access control"
   },
   {
     icon: Server,
     title: "Backend Focus",
-    description: "Django, FastAPI, PostgreSQL with robust API design"
+    description: "FastAPI, SQLAlchemy, Django — robust REST APIs across 15+ business modules"
   },
   {
     icon: Code2,
     title: "Modern Frontend",
-    description: "React & TypeScript for responsive, type-safe applications"
+    description: "React 18, TypeScript, Material UI, and TanStack React Query"
   }
 ];
 
@@ -58,20 +58,16 @@ const AboutSection = () => {
               }`}
             >
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I'm a full-stack developer with over 4 years of experience building 
-                enterprise software. My specialty is developing complex, multi-tenant 
-                ERP and CRM systems that scale with business needs.
+                I'm a full-stack software engineer with 4+ years of experience building
+                enterprise and production web applications. Currently I'm developing a
+                multi-tenant ERP platform handling authentication, access control,
+                licensing, and business operations across a 183,000-line codebase.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Based in Johannesburg with EU citizenship, I'm open to opportunities 
-                both locally and remote positions with European companies. I thrive in 
-                environments where I can contribute to meaningful projects and continue 
-                growing as an engineer.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Currently expanding my DevOps skills—learning CI/CD pipelines, Docker 
-                containerization, and automated testing to become a more well-rounded 
-                developer.
+                I'm proficient across the full stack — Python backend services,
+                React/TypeScript frontends, PostgreSQL database architecture, and Docker
+                containerisation. Based in Johannesburg with EU citizenship, I'm open to
+                local and remote opportunities.
               </p>
             </div>
 
@@ -83,16 +79,16 @@ const AboutSection = () => {
               {highlights.map((item, index) => (
                 <div 
                   key={item.title}
-                  className={`p-6 bg-background border border-border card-hover group transition-all duration-500 ${
+                  className={`p-6 bg-background border border-border card-hover group transition-all duration-300 ease-out ${
                     cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
-                  style={{ transitionDelay: `${index * 100}ms` }}
+                  style={{ transitionDelay: cardsVisible ? '0ms' : `${index * 100}ms` }}
                 >
                   <div className="relative">
-                    <item.icon className="w-10 h-10 text-primary mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300" />
-                    <div className="absolute -inset-2 bg-primary/10 rounded-full opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300" />
+                    <item.icon className="w-10 h-10 text-primary mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-200 ease-out" />
+                    <div className="absolute -inset-2 bg-primary/10 rounded-full opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-200 ease-out" />
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                  <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-200 ease-out">
                     {item.title}
                   </h3>
                   <p className="text-sm text-muted-foreground">

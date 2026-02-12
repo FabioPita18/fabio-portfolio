@@ -111,21 +111,21 @@
 
   /* Interactive hover effects */
   .hover-lift {
-    @apply transition-all duration-300 ease-out;
+    @apply transition-all duration-200 ease-out;
   }
   .hover-lift:hover {
     @apply -translate-y-2 shadow-lg;
   }
 
   .hover-scale {
-    @apply transition-transform duration-300 ease-out;
+    @apply transition-transform duration-200 ease-out;
   }
   .hover-scale:hover {
     @apply scale-105;
   }
 
   .hover-glow {
-    @apply transition-all duration-300;
+    @apply transition-all duration-200 ease-out;
   }
   .hover-glow:hover {
     box-shadow: 0 0 30px hsl(var(--accent) / 0.4);
@@ -137,7 +137,7 @@
   }
   .link-underline::after {
     content: '';
-    @apply absolute w-full h-0.5 bottom-0 left-0 bg-accent origin-bottom-right transition-transform duration-300 scale-x-0;
+    @apply absolute w-full h-0.5 bottom-0 left-0 bg-accent origin-bottom-right transition-transform duration-200 ease-out scale-x-0;
   }
   .link-underline:hover::after {
     @apply origin-bottom-left scale-x-100;
@@ -145,7 +145,7 @@
 
   /* Card hover effect */
   .card-hover {
-    @apply transition-all duration-300 ease-out;
+    @apply transition-all duration-200 ease-out;
   }
   .card-hover:hover {
     @apply -translate-y-1 border-accent/50;
@@ -202,7 +202,7 @@
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.2s ease-out;
   }
   .gradient-border:hover::before {
     opacity: 1;

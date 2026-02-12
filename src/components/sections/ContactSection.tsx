@@ -34,13 +34,13 @@ const ContactSection = () => {
           {/* Contact Card */}
           <div 
             ref={cardRef}
-            className={`bg-card border border-border p-8 md:p-12 card-hover transition-all duration-700 ${
+            className={`bg-card border border-border p-8 md:p-12 card-hover transition-all duration-300 ease-out ${
               cardVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
             <div className="grid md:grid-cols-2 gap-12">
               {/* Info */}
-              <div className={`space-y-6 transition-all duration-700 delay-200 ${
+              <div className={`space-y-6 transition-all duration-500 ${
                 cardVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
               }`}>
                 <h3 className="text-2xl font-bold font-display text-foreground">
@@ -53,29 +53,29 @@ const ContactSection = () => {
                 
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 text-muted-foreground group cursor-default">
-                    <MapPin className="w-5 h-5 text-primary group-hover:scale-110 transition-transform duration-300" />
-                    <span className="group-hover:text-foreground transition-colors duration-300">Johannesburg, South Africa</span>
+                    <MapPin className="w-5 h-5 text-primary group-hover:scale-110 transition-transform duration-200 ease-out" />
+                    <span className="group-hover:text-foreground transition-colors duration-200 ease-out">Johannesburg, South Africa</span>
                   </div>
                   <div className="flex items-center gap-3 text-muted-foreground group cursor-default">
-                    <Globe className="w-5 h-5 text-primary group-hover:rotate-12 transition-transform duration-300" />
-                    <span className="group-hover:text-foreground transition-colors duration-300">EU Citizen • Open to Remote</span>
+                    <Globe className="w-5 h-5 text-primary group-hover:rotate-12 transition-transform duration-200 ease-out" />
+                    <span className="group-hover:text-foreground transition-colors duration-200 ease-out">EU Citizen • Open to Remote</span>
                   </div>
                 </div>
 
                 {/* Social Links */}
                 <div className="flex gap-4 pt-4">
                   {[
-                    { icon: Github, label: "GitHub", href: "#" },
-                    { icon: Linkedin, label: "LinkedIn", href: "#" },
-                    { icon: Mail, label: "Email", href: "mailto:hello@example.com" }
+                    { icon: Github, label: "GitHub", href: "https://github.com/FabioPita18" },
+                    { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/fabio-pita-455b83212/" },
+                    { icon: Mail, label: "Email", href: "mailto:fabiopita267@gmail.com" }
                   ].map((social, index) => (
                     <a 
                       key={social.label}
                       href={social.href}
-                      className={`p-3 bg-muted/20 border border-border hover:border-primary hover:bg-primary/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+                      className={`p-3 bg-muted/20 border border-border hover:border-primary hover:bg-primary/10 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-lg ${
                         cardVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                       }`}
-                      style={{ transitionDelay: `${400 + index * 100}ms` }}
+                      style={{ transitionDelay: cardVisible ? '0ms' : `${400 + index * 100}ms` }}
                       aria-label={social.label}
                     >
                       <social.icon className="w-5 h-5 text-foreground" />
@@ -85,16 +85,16 @@ const ContactSection = () => {
               </div>
 
               {/* CTA */}
-              <div className={`flex flex-col justify-center items-center text-center p-8 bg-muted/10 border border-border relative overflow-hidden group transition-all duration-700 delay-300 ${
+              <div className={`flex flex-col justify-center items-center text-center p-8 bg-muted/10 border border-border relative overflow-hidden group transition-all duration-500 ${
                 cardVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
               }`}>
                 {/* Animated background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-out" />
                 
                 <div className="relative z-10">
                   <div className="relative mb-4">
-                    <Mail className="w-12 h-12 text-primary group-hover:scale-110 transition-transform duration-300" />
-                    <Send className="w-5 h-5 text-primary/60 absolute -top-1 -right-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
+                    <Mail className="w-12 h-12 text-primary group-hover:scale-110 transition-transform duration-200 ease-out" />
+                    <Send className="w-5 h-5 text-primary/60 absolute -top-1 -right-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-200 ease-out" />
                   </div>
                   <h4 className="text-xl font-semibold text-foreground mb-2">
                     Send me an email
@@ -105,11 +105,11 @@ const ContactSection = () => {
                   <Button 
                     size="lg" 
                     asChild 
-                    className="hover:scale-105 hover-glow transition-all duration-300"
+                    className="hover:scale-105 hover-glow transition-all duration-200 ease-out"
                   >
-                    <a href="mailto:hello@example.com">
+                    <a href="mailto:fabiopita267@gmail.com">
                       <Mail className="w-4 h-4 mr-2" />
-                      hello@example.com
+                      fabiopita267@gmail.com
                     </a>
                   </Button>
                 </div>

@@ -1,84 +1,27 @@
 import useScrollAnimation from "@/hooks/useScrollAnimation";
-import { useEffect, useState } from "react";
 
 const skillCategories = [
-  {
-    title: "Backend",
-    skills: [
-      { name: "Python", level: 95 },
-      { name: "Django", level: 90 },
-      { name: "FastAPI", level: 85 },
-      { name: "PostgreSQL", level: 88 },
-      { name: "REST APIs", level: 92 }
-    ]
-  },
-  {
-    title: "Frontend",
-    skills: [
-      { name: "React", level: 85 },
-      { name: "TypeScript", level: 80 },
-      { name: "JavaScript", level: 90 },
-      { name: "HTML/CSS", level: 88 },
-      { name: "Tailwind CSS", level: 82 }
-    ]
-  },
-  {
-    title: "Learning",
-    skills: [
-      { name: "Docker", level: 60 },
-      { name: "CI/CD", level: 55 },
-      { name: "Testing", level: 65 },
-      { name: "Kubernetes", level: 40 },
-      { name: "AWS", level: 50 }
-    ]
-  }
+  { title: "Languages", skills: ["Python", "TypeScript", "JavaScript", "SQL", "HTML", "CSS", "Bash"] },
+  { title: "Backend", skills: ["FastAPI", "Django", "Django REST Framework", "SQLAlchemy", "Pydantic", "Alembic", "Uvicorn"] },
+  { title: "Frontend", skills: ["React 18", "Material UI", "Tailwind CSS", "React Router", "TanStack React Query", "Vite"] },
+  { title: "Databases", skills: ["PostgreSQL", "Redis"] },
+  { title: "Auth", skills: ["JWT", "OAuth2 (Google, GitHub)", "bcrypt"] },
+  { title: "DevOps", skills: ["Docker", "Docker Compose", "GitHub Actions", "nginx", "Railway", "Vercel"] },
+  { title: "APIs", skills: ["REST", "GraphQL", "WebSockets", "OpenAPI/Swagger"] },
+  { title: "Testing", skills: ["pytest", "Jest", "Vitest"] },
+  { title: "Tools", skills: ["Git", "GitHub CLI", "ESLint", "Black", "Ruff", "mypy"] },
 ];
-
-const SkillBar = ({ name, level, isVisible, delay }: { name: string; level: number; isVisible: boolean; delay: number }) => {
-  const [width, setWidth] = useState(0);
-
-  useEffect(() => {
-    if (isVisible) {
-      const timer = setTimeout(() => setWidth(level), delay);
-      return () => clearTimeout(timer);
-    }
-  }, [isVisible, level, delay]);
-
-  return (
-    <div className="group">
-      <div className="flex justify-between mb-2">
-        <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors duration-300">
-          {name}
-        </span>
-        <span className={`text-sm text-muted-foreground font-mono transition-all duration-500 ${
-          isVisible ? 'opacity-100' : 'opacity-0'
-        }`}>
-          {level}%
-        </span>
-      </div>
-      <div className="h-2 bg-muted/30 overflow-hidden relative">
-        <div 
-          className="h-full bg-primary transition-all duration-1000 ease-out relative overflow-hidden"
-          style={{ width: `${width}%` }}
-        >
-          {/* Shimmer effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-foreground/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const SkillsSection = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
-  const { ref: skillsRef, isVisible: skillsVisible } = useScrollAnimation({ threshold: 0.2 });
+  const { ref: skillsRef, isVisible: skillsVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
     <section id="skills" className="py-24 bg-background">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div 
+          <div
             ref={headerRef}
             className={`text-center mb-16 transition-all duration-700 ${
               headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -93,35 +36,37 @@ const SkillsSection = () => {
             <p className={`text-muted-foreground max-w-2xl mx-auto transition-all duration-700 delay-300 ${
               headerVisible ? 'opacity-100' : 'opacity-0'
             }`}>
-              Core competencies and technologies I work with daily, plus areas I'm actively improving.
+              Technologies and tools I use to build production applications.
             </p>
           </div>
 
           {/* Skills Grid */}
-          <div ref={skillsRef} className="grid md:grid-cols-3 gap-8">
+          <div ref={skillsRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {skillCategories.map((category, categoryIndex) => (
-              <div 
+              <div
                 key={category.title}
                 className={`p-6 bg-card border border-border card-hover transition-all duration-500 ${
                   skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
-                style={{ transitionDelay: `${categoryIndex * 150}ms` }}
+                style={{ transitionDelay: skillsVisible ? '0ms' : `${categoryIndex * 60}ms` }}
               >
-                <h3 className="text-xl font-semibold text-foreground mb-6 pb-2 border-b border-border relative">
+                <h3 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-border relative">
                   {category.title}
                   <span className={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-700 ${
-                    skillsVisible ? 'w-12' : 'w-0'
-                  }`} style={{ transitionDelay: `${categoryIndex * 150 + 300}ms` }} />
+                    skillsVisible ? 'w-10' : 'w-0'
+                  }`} style={{ transitionDelay: skillsVisible ? '0ms' : `${categoryIndex * 60 + 200}ms` }} />
                 </h3>
-                <div className="space-y-5">
+                <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill, skillIndex) => (
-                    <SkillBar 
-                      key={skill.name}
-                      name={skill.name}
-                      level={skill.level}
-                      isVisible={skillsVisible}
-                      delay={categoryIndex * 150 + skillIndex * 100 + 400}
-                    />
+                    <span
+                      key={skill}
+                      className={`px-3 py-1.5 bg-muted/20 text-sm text-muted-foreground font-mono transition-all duration-300 cursor-default ${
+                        skillsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+                      }`}
+                      style={{ transitionDelay: skillsVisible ? '0ms' : `${categoryIndex * 60 + skillIndex * 40 + 300}ms` }}
+                    >
+                      {skill}
+                    </span>
                   ))}
                 </div>
               </div>

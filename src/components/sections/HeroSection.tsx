@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroBg from "@/assets/red-hero-bg-image.png";
 
 const HeroSection = () => {
   return (
@@ -49,16 +49,15 @@ const HeroSection = () => {
 
           {/* Tagline */}
           <p className="opacity-0 animate-fade-in-up stagger-3 text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            4+ years building enterprise-grade ERP/CRM systems. 
-            <span className="block mt-2">Passionate about scalable architecture and clean code.</span>
+            4+ years building enterprise-grade web applications.
           </p>
 
           {/* Tech Stack Pills */}
           <div className="opacity-0 animate-fade-in stagger-4 flex flex-wrap justify-center gap-3">
-            {["Django", "FastAPI", "React", "TypeScript", "PostgreSQL"].map((tech, index) =>
+            {["Python", "React", "TypeScript", "PostgreSQL", "Docker"].map((tech, index) =>
             <span
               key={tech}
-              className="px-4 py-2 bg-secondary/20 border border-secondary/30 text-secondary-foreground text-sm font-mono hover-lift hover:border-primary/50 hover:bg-primary/10 cursor-default"
+              className="px-4 py-2 bg-secondary/20 border border-secondary/30 text-secondary-foreground text-sm font-mono hover:border-primary/50 hover:bg-primary/10 transition-all duration-200 ease-out cursor-default"
               style={{ animationDelay: `${0.4 + index * 0.1}s` }}>
 
                 {tech}
@@ -70,16 +69,16 @@ const HeroSection = () => {
           <div className="opacity-0 animate-slide-up stagger-5 flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <Button
               size="lg"
-              className="group hover-glow hover:scale-105 transition-all duration-300"
+              className="group hover-glow hover:scale-105 transition-all duration-200 ease-out"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
 
-              <Mail className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+              <Mail className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-200 ease-out" />
               Get in Touch
             </Button>
             <Button
               variant="outline"
               size="lg"
-              className="hover:scale-105 transition-all duration-300 hover:border-primary"
+              className="hover:scale-105 transition-all duration-200 ease-out hover:border-primary"
               onClick={() => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })}>
 
               View Experience
