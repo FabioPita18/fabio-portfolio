@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 interface ParticleBackgroundProps {
   theme: "red" | "dark";
   direction: "ltr" | "rtl";
+  mode: "dark" | "light";
 }
 
 interface Particle {
@@ -18,13 +19,11 @@ interface Particle {
 }
 
 const WAVE_LINES = 7;
-const CONNECTION_DIST = 135;
 const WAVE_CYCLE = 7;
-const PARTICLES_PER_900PX = 70;
+const PARTICLES_PER_900PX = 49;
 
-const ParticleBackground = ({ theme, direction }: ParticleBackgroundProps) => {
+const ParticleBackground = ({ theme, direction, mode }: ParticleBackgroundProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const visibleRef = useRef(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -39,26 +38,68 @@ const ParticleBackground = ({ theme, direction }: ParticleBackgroundProps) => {
     const timeDir = direction === "rtl" ? 1 : -1;
 
     const isRed = theme === "red";
-    const waveBaseAlpha = isRed ? 0.32 : 0.25;
-    const waveAlphaRange = isRed ? 0.18 : 0.25;
-    const connMaxAlpha = isRed ? 0.15 : 0.12;
-    const particleFill = isRed ? "#ff0000" : "rgba(0,0,0,0.7)";
-    const particleGlow = isRed ? "#ff0000" : "rgba(0,0,0,0.5)";
-    const vigInner = isRed ? "rgba(40,0,0,0.08)" : "rgba(0,0,0,0.03)";
-    const vigOuter = isRed ? "rgba(0,0,0,0.25)" : "rgba(0,0,0,0.15)";
+    const isLight = mode === "light";
 
-    const waveColor = (progress: number, alpha: number) =>
-      isRed
-        ? `rgba(${Math.floor(150 + progress * 105)},0,0,${alpha})`
-        : `rgba(0,0,0,${alpha})`;
+    // Dark mode: red zones get red particles, dark zones get black particles
+    // Light mode: red zones (white bg) get dark grey particles, dark zones (grey bg) get red particles
+    let waveBaseAlpha: number;
+    let waveAlphaRange: number;
+    let particleFill: string;
+    let particleGlow: string;
+    let vigInner: string;
+    let vigOuter: string;
+    let waveColor: (progress: number, alpha: number) => string;
 
-    const connColor = (alpha: number) =>
-      isRed ? `rgba(255,0,0,${alpha})` : `rgba(0,0,0,${alpha})`;
+    if (isLight) {
+      if (isRed) {
+        // Light mode, "red" zone (white bg) → dark grey particles & waves
+        waveBaseAlpha = 0.15;
+        waveAlphaRange = 0.15;
+        particleFill = "rgba(0,0,0,0.5)";
+        particleGlow = "rgba(0,0,0,0.3)";
+        vigInner = "rgba(0,0,0,0.02)";
+        vigOuter = "rgba(0,0,0,0.08)";
+        waveColor = (_progress: number, alpha: number) =>
+          `rgba(0,0,0,${alpha})`;
+      } else {
+        // Light mode, "dark" zone (grey bg) → red particles & waves
+        waveBaseAlpha = 0.2;
+        waveAlphaRange = 0.15;
+        particleFill = "#cc0000";
+        particleGlow = "rgba(200,0,0,0.4)";
+        vigInner = "rgba(0,0,0,0.01)";
+        vigOuter = "rgba(0,0,0,0.06)";
+        waveColor = (progress: number, alpha: number) =>
+          `rgba(${Math.floor(150 + progress * 55)},0,0,${alpha})`;
+      }
+    } else {
+      if (isRed) {
+        // Dark mode, "red" zone (black bg) → red particles & waves
+        waveBaseAlpha = 0.32;
+        waveAlphaRange = 0.18;
+        particleFill = "#ff0000";
+        particleGlow = "#ff0000";
+        vigInner = "rgba(40,0,0,0.08)";
+        vigOuter = "rgba(0,0,0,0.25)";
+        waveColor = (progress: number, alpha: number) =>
+          `rgba(${Math.floor(150 + progress * 105)},0,0,${alpha})`;
+      } else {
+        // Dark mode, "dark" zone (maroon bg) → black particles & waves
+        waveBaseAlpha = 0.25;
+        waveAlphaRange = 0.25;
+        particleFill = "rgba(0,0,0,0.7)";
+        particleGlow = "rgba(0,0,0,0.5)";
+        vigInner = "rgba(0,0,0,0.03)";
+        vigOuter = "rgba(0,0,0,0.15)";
+        waveColor = (_progress: number, alpha: number) =>
+          `rgba(0,0,0,${alpha})`;
+      }
+    }
 
     const resize = () => {
       const parent = canvas.parentElement;
       if (!parent) return;
-      const dpr = window.devicePixelRatio || 1;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       w = parent.clientWidth;
       h = parent.clientHeight;
       canvas.width = w * dpr;
@@ -69,7 +110,7 @@ const ParticleBackground = ({ theme, direction }: ParticleBackgroundProps) => {
     };
 
     const initParticles = () => {
-      const count = Math.max(40, Math.round((h / 900) * PARTICLES_PER_900PX));
+      const count = Math.max(28, Math.round((h / 900) * PARTICLES_PER_900PX));
       particles = [];
       for (let i = 0; i < count; i++) {
         const isWave = i < count * 0.6;
@@ -122,33 +163,18 @@ const ParticleBackground = ({ theme, direction }: ParticleBackgroundProps) => {
 
     const drawVignette = () => {
       const r = Math.max(w, h) * 0.75;
-      const gradient = ctx.createRadialGradient(
-        w * 0.5, h * 0.5, w * 0.1,
-        w * 0.5, h * 0.5, r
+      const grad = ctx.createRadialGradient(
+        w * 0.5,
+        h * 0.5,
+        w * 0.1,
+        w * 0.5,
+        h * 0.5,
+        r
       );
-      gradient.addColorStop(0, vigInner);
-      gradient.addColorStop(1, vigOuter);
-      ctx.fillStyle = gradient;
+      grad.addColorStop(0, vigInner);
+      grad.addColorStop(1, vigOuter);
+      ctx.fillStyle = grad;
       ctx.fillRect(0, 0, w, h);
-    };
-
-    const drawConnections = () => {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < CONNECTION_DIST) {
-            const alpha = connMaxAlpha * (1 - dist / CONNECTION_DIST);
-            ctx.beginPath();
-            ctx.strokeStyle = connColor(alpha);
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
     };
 
     const drawParticles = () => {
@@ -172,6 +198,7 @@ const ParticleBackground = ({ theme, direction }: ParticleBackgroundProps) => {
             Math.sin(time * 0.5 + p.phaseOffset) * 20;
           p.y += (targetY - p.y) * 0.008;
           p.x += p.vx;
+          p.vx *= 0.995;
           if (p.x < -10) p.x = w + 10;
           if (p.x > w + 10) p.x = -10;
         } else {
@@ -179,7 +206,7 @@ const ParticleBackground = ({ theme, direction }: ParticleBackgroundProps) => {
           p.vy += (Math.random() - 0.5) * 0.02;
           p.vx *= 0.99;
           p.vy *= 0.99;
-          const maxV = 0.25;
+          const maxV = 0.3;
           p.vx = Math.max(-maxV, Math.min(maxV, p.vx));
           p.vy = Math.max(-maxV, Math.min(maxV, p.vy));
           p.x += p.vx;
@@ -192,51 +219,60 @@ const ParticleBackground = ({ theme, direction }: ParticleBackgroundProps) => {
       }
     };
 
-    const render = () => {
-      if (!visibleRef.current) {
-        animId = requestAnimationFrame(render);
-        return;
-      }
-      const time = (performance.now() / 1000) * ((Math.PI * 2) / WAVE_CYCLE);
+    const render = (now: number) => {
+      animId = requestAnimationFrame(render);
+      const time = (now / 1000) * ((Math.PI * 2) / WAVE_CYCLE);
       ctx.clearRect(0, 0, w, h);
       drawWaves(time);
-      drawConnections();
       drawParticles();
       drawVignette();
       updateParticles(time);
+    };
+
+    const startLoop = () => {
+      if (animId) return;
       animId = requestAnimationFrame(render);
+    };
+
+    const stopLoop = () => {
+      if (animId) {
+        cancelAnimationFrame(animId);
+        animId = 0;
+      }
     };
 
     resize();
     initParticles();
-    animId = requestAnimationFrame(render);
+    startLoop();
 
     const onResize = () => {
       resize();
       initParticles();
     };
 
+    const parent = canvas.parentElement;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        visibleRef.current = entry.isIntersecting;
+        if (entry.isIntersecting) startLoop();
+        else stopLoop();
       },
       { threshold: 0 }
     );
-    const parent = canvas.parentElement;
     if (parent) observer.observe(parent);
 
     window.addEventListener("resize", onResize);
     return () => {
-      cancelAnimationFrame(animId);
+      stopLoop();
       window.removeEventListener("resize", onResize);
       observer.disconnect();
     };
-  }, [theme, direction]);
+  }, [theme, direction, mode]);
 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-none"
+      className="absolute inset-0 pointer-events-none will-change-transform"
       aria-hidden="true"
     />
   );

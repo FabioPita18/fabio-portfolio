@@ -1,12 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
 import ParticleBackground from "@/components/ParticleBackground";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const HeroSection = () => {
+  const { theme } = useTheme();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated canvas background */}
-      <ParticleBackground theme="red" direction="rtl" />
+      <ParticleBackground theme="red" direction="rtl" mode={theme} />
       <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
       
       {/* Content */}

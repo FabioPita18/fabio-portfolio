@@ -80,6 +80,50 @@
     --spacing: 0.25rem;
   }
 
+  [data-theme="light"] {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 96%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 96%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 0 100% 29%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 92%;
+    --secondary-foreground: 0 0% 15%;
+
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 0 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 82%;
+    --input: 0 0% 82%;
+    --ring: 0 100% 50%;
+
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.06);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.06);
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.08), 0 1px 2px -1px hsl(0 0% 0% / 0.06);
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.08), 0 1px 2px -1px hsl(0 0% 0% / 0.06);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.08), 0 2px 4px -2px hsl(0 0% 0% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.08), 0 4px 6px -4px hsl(0 0% 0% / 0.06);
+    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.08), 0 8px 10px -6px hsl(0 0% 0% / 0.06);
+    --shadow-2xl: 0 25px 50px -12px hsl(0 0% 0% / 0.15);
+
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 100% / 0.95) 0%, hsl(0 0% 96% / 0.9) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.8) 100%);
+    --glow-primary: 0 0 40px hsl(0 100% 50% / 0.15);
+    --glow-accent: 0 0 60px hsl(0 100% 50% / 0.1);
+  }
+
   * {
     @apply border-border;
   }
@@ -206,5 +250,25 @@
   }
   .gradient-border:hover::before {
     opacity: 1;
+  }
+}
+
+/* View Transition: circular reveal for theme toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  animation: vt-reveal 0.7s ease-out;
+}
+
+@keyframes vt-reveal {
+  from {
+    clip-path: circle(0px at var(--vt-x) var(--vt-y));
+  }
+  to {
+    clip-path: circle(var(--vt-r) at var(--vt-x) var(--vt-y));
   }
 }

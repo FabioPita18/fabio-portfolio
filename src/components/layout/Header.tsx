@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -14,11 +15,12 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
+
       // Determine active section
       const sections = navLinks.map(link => link.href.substring(1));
       for (const section of sections.reverse()) {
@@ -39,11 +41,18 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleToggleTheme = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    toggleTheme({ x, y });
+  };
+
   return (
-    <header 
+    <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm" 
+        isScrolled
+          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
           : "bg-transparent"
       }`}
     >
@@ -72,6 +81,20 @@ const Header = () => {
             >
               Hire Me
             </Button>
+            <button
+              onClick={handleToggleTheme}
+              className="p-2 text-foreground hover:text-primary transition-colors duration-200 ease-out"
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              <div className="relative w-5 h-5">
+                <Sun className={`w-5 h-5 absolute inset-0 transition-all duration-300 ${
+                  theme === "dark" ? "rotate-0 opacity-100" : "rotate-90 opacity-0"
+                }`} />
+                <Moon className={`w-5 h-5 absolute inset-0 transition-all duration-300 ${
+                  theme === "light" ? "rotate-0 opacity-100" : "-rotate-90 opacity-0"
+                }`} />
+              </div>
+            </button>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -106,7 +129,7 @@ const Header = () => {
                       ? 'text-foreground bg-muted/10'
                       : 'text-muted-foreground'
                   }`}
-                  style={{ 
+                  style={{
                     transitionDelay: isMobileMenuOpen ? `${index * 50}ms` : '0ms',
                     transform: isMobileMenuOpen ? 'translateX(0)' : 'translateX(-20px)',
                     opacity: isMobileMenuOpen ? 1 : 0
@@ -115,13 +138,27 @@ const Header = () => {
                   {link.label}
                 </button>
               ))}
-              <div className="px-4 pt-2">
+              <div className="px-4 pt-2 flex gap-2">
                 <Button
-                  className="w-full font-display hover:scale-[1.02] transition-transform duration-200 ease-out"
+                  className="flex-1 font-display hover:scale-[1.02] transition-transform duration-200 ease-out"
                   onClick={() => scrollToSection("#contact")}
                 >
                   Hire Me
                 </Button>
+                <button
+                  onClick={handleToggleTheme}
+                  className="p-3 border border-border text-foreground hover:text-primary transition-colors duration-200 ease-out rounded-md"
+                  aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+                >
+                  <div className="relative w-5 h-5">
+                    <Sun className={`w-5 h-5 absolute inset-0 transition-all duration-300 ${
+                      theme === "dark" ? "rotate-0 opacity-100" : "rotate-90 opacity-0"
+                    }`} />
+                    <Moon className={`w-5 h-5 absolute inset-0 transition-all duration-300 ${
+                      theme === "light" ? "rotate-0 opacity-100" : "-rotate-90 opacity-0"
+                    }`} />
+                  </div>
+                </button>
               </div>
             </div>
           </div>
