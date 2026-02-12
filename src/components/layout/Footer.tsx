@@ -11,12 +11,7 @@ const Footer = () => {
     <footer className="py-8 bg-card border-t border-border relative">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          {/* Logo */}
-          <div className="text-lg font-bold text-foreground group cursor-default">
-            <span className="text-primary">&lt;</span>
-            <span className="group-hover:tracking-wider transition-all duration-300">Dev</span>
-            <span className="text-primary">/&gt;</span>
-          </div>
+          <div className="flex-1" />
 
           {/* Copyright */}
           <p className="text-sm text-muted-foreground">
@@ -24,8 +19,8 @@ const Footer = () => {
           </p>
 
           {/* Location */}
-          <p className="text-sm text-muted-foreground flex items-center gap-1">
-            Johannesburg, South Africa 
+          <p className="text-sm text-muted-foreground flex-1 justify-end flex items-center gap-1">
+            Johannesburg, South Africa
             <span className="inline-block hover:scale-125 transition-transform duration-300 cursor-default">🇿🇦</span>
           </p>
         </div>

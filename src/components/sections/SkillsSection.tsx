@@ -84,7 +84,7 @@ const SkillsSection = () => {
               headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground mb-4">
               Technical Skills
             </h2>
             <div className={`w-20 h-1 bg-primary mx-auto mb-4 transition-all duration-700 delay-200 ${

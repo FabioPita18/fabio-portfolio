@@ -127,8 +127,9 @@ export default {
   			'2xl': 'var(--shadow-2xl)'
   		},
   		fontFamily: {
-  			sans: ['Ferro Rosso', 'sans-serif'],
+  			sans: ['Montserrat', 'sans-serif'],
   			serif: ['Ferro Rosso', 'serif'],
+  			display: ['Ferro Rosso', 'sans-serif'],
   			mono: ['Fira Code', 'JetBrains Mono', 'monospace']
   		}
   	}

@@ -17,7 +17,7 @@ const ContactSection = () => {
               headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground mb-4">
               Let's Connect
             </h2>
             <div className={`w-20 h-1 bg-primary mx-auto mb-4 transition-all duration-700 delay-200 ${
@@ -43,7 +43,7 @@ const ContactSection = () => {
               <div className={`space-y-6 transition-all duration-700 delay-200 ${
                 cardVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
               }`}>
-                <h3 className="text-2xl font-bold text-foreground">
+                <h3 className="text-2xl font-bold font-display text-foreground">
                   Get in Touch
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">

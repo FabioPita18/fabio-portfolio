@@ -48,30 +48,16 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <a 
-            href="#" 
-            className="text-xl font-bold text-foreground group"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          >
-            <span className="text-primary group-hover:animate-pulse">&lt;</span>
-            <span className="group-hover:tracking-wider transition-all duration-300">Dev</span>
-            <span className="text-primary group-hover:animate-pulse">/&gt;</span>
-          </a>
-
+        <div className="flex items-center justify-center relative h-16 md:h-20">
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link, index) => (
               <button
                 key={link.href}
                 onClick={() => scrollToSection(link.href)}
-                className={`relative text-sm font-medium transition-colors duration-300 link-underline ${
-                  activeSection === link.href.substring(1) 
-                    ? 'text-foreground' 
+                className={`relative text-sm font-medium font-display transition-colors duration-300 link-underline ${
+                  activeSection === link.href.substring(1)
+                    ? 'text-foreground'
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
                 style={{ animationDelay: `${index * 100}ms` }}
@@ -90,7 +76,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-foreground hover:bg-muted/20 transition-colors duration-300"
+            className="md:hidden absolute right-0 p-2 text-foreground hover:bg-muted/20 transition-colors duration-300"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -115,7 +101,7 @@ const Header = () => {
                 <button
                   key={link.href}
                   onClick={() => scrollToSection(link.href)}
-                  className={`text-left px-4 py-3 text-sm font-medium transition-all duration-300 hover:bg-muted/20 hover:pl-6 ${
+                  className={`text-left px-4 py-3 text-sm font-medium font-display transition-all duration-300 hover:bg-muted/20 hover:pl-6 ${
                     activeSection === link.href.substring(1)
                       ? 'text-foreground bg-muted/10'
                       : 'text-muted-foreground'

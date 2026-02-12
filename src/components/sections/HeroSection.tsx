@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowDown, MapPin, Mail, Sparkles } from "lucide-react";
+import { Mail } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
@@ -40,13 +40,12 @@ const HeroSection = () => {
           </div>
 
           {/* Name */}
-          <h1 className="opacity-0 animate-fade-in-up stagger-2 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground">
-            <span className="inline-block hover:scale-105 transition-transform duration-300">Full Stack</span>
-            <span className="block text-primary relative">
-              Developer
-              <Sparkles className="absolute -top-2 -right-8 w-6 h-6 text-primary/60 animate-pulse-glow" />
-            </span>
+          <h1 className="opacity-0 animate-fade-in-up stagger-2 text-5xl md:text-7xl lg:text-8xl font-bold font-display tracking-tight text-foreground">
+            Fabio Pita
           </h1>
+          <p className="opacity-0 animate-fade-in-up stagger-2 text-2xl md:text-3xl text-primary font-medium">
+            Full Stack Developer
+          </p>
 
           {/* Tagline */}
           <p className="opacity-0 animate-fade-in-up stagger-3 text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
