@@ -19,7 +19,7 @@ const Footer = () => {
           </p>
 
           {/* Location */}
-          <p className="text-sm text-muted-foreground flex-1 justify-end flex items-center gap-1">
+          <p className="text-sm text-muted-foreground flex-1 justify-center md:justify-end flex items-center gap-1">
             Johannesburg, South Africa
             <span className="inline-block hover:scale-125 transition-transform duration-200 ease-out cursor-default">🇿🇦</span>
           </p>

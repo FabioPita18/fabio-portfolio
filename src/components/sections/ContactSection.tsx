@@ -102,10 +102,10 @@ const ContactSection = () => {
                   <p className="text-sm text-muted-foreground mb-6">
                     I typically respond within 24 hours
                   </p>
-                  <Button 
-                    size="lg" 
-                    asChild 
-                    className="hover:scale-105 hover-glow transition-all duration-200 ease-out"
+                  <Button
+                    size="lg"
+                    asChild
+                    className="w-full sm:w-auto hover:scale-105 hover-glow transition-all duration-200 ease-out"
                   >
                     <a href="mailto:fabiopita267@gmail.com">
                       <Mail className="w-4 h-4 mr-2" />

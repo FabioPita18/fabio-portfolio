@@ -60,7 +60,7 @@ const ProjectsSection = () => {
 
   return (
     <section id="projects" className="relative py-24">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div
@@ -122,7 +122,7 @@ const ProjectsSection = () => {
                   href={project.repoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex-shrink-0 w-[300px] p-6 rounded-2xl border-[3px] border-primary bg-card hover:border-accent transition-all duration-300 ease-out group ${
+                  className={`flex-shrink-0 w-[280px] sm:w-[300px] p-6 rounded-2xl border-[3px] border-primary bg-card hover:border-accent transition-all duration-300 ease-out group ${
                     carouselVisible
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-8"

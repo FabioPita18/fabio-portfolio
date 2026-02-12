@@ -61,8 +61,8 @@ const ExperienceSection = () => {
           {/* Timeline */}
           <div ref={timelineRef} className="relative">
             {/* Timeline Line - animated */}
-            <div 
-              className={`absolute left-0 md:left-1/2 top-0 w-px bg-border md:-translate-x-1/2 transition-all duration-1000 ease-out ${
+            <div
+              className={`absolute left-[7px] md:left-1/2 top-0 w-px bg-border md:-translate-x-1/2 transition-all duration-1000 ease-out ${
                 timelineVisible ? 'h-full' : 'h-0'
               }`}
             />
@@ -76,7 +76,7 @@ const ExperienceSection = () => {
                 style={{ transitionDelay: timelineVisible ? '0ms' : `${300 + index * 200}ms` }}
               >
                 {/* Timeline Dot - animated pulse */}
-                <div className={`absolute left-0 md:left-1/2 top-0 w-4 h-4 bg-primary border-4 border-background md:-translate-x-1/2 -translate-x-1/2 transition-all duration-500 ${
+                <div className={`absolute left-0 md:left-1/2 top-0 w-4 h-4 bg-primary border-4 border-background md:-translate-x-1/2 transition-all duration-500 ${
                   timelineVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                 }`} style={{ transitionDelay: timelineVisible ? '0ms' : `${500 + index * 200}ms` }}>
                   <div className="absolute inset-0 bg-primary animate-ping opacity-20" />

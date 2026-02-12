@@ -110,7 +110,10 @@ const ParticleBackground = ({ theme, direction, mode }: ParticleBackgroundProps)
     };
 
     const initParticles = () => {
-      const count = Math.max(28, Math.round((h / 900) * PARTICLES_PER_900PX));
+      const isMobile = w < 768;
+      const perPage = isMobile ? 30 : PARTICLES_PER_900PX;
+      const floor = isMobile ? 15 : 28;
+      const count = Math.max(floor, Math.round((h / 900) * perPage));
       particles = [];
       for (let i = 0; i < count; i++) {
         const isWave = i < count * 0.6;

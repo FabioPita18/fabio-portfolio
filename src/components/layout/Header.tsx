@@ -97,9 +97,17 @@ const Header = () => {
             </button>
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile: Hire Me + Hamburger */}
+          <div className="md:hidden absolute right-0 flex items-center gap-2">
+            <Button
+              size="sm"
+              onClick={() => scrollToSection("#contact")}
+              className="font-display text-xs"
+            >
+              Hire Me
+            </Button>
           <button
-            className="md:hidden absolute right-0 p-2 text-foreground hover:bg-muted/20 transition-colors duration-200 ease-out"
+            className="p-2 text-foreground hover:bg-muted/20 transition-colors duration-200 ease-out"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -112,6 +120,7 @@ const Header = () => {
               }`} />
             </div>
           </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -124,7 +133,7 @@ const Header = () => {
                 <button
                   key={link.href}
                   onClick={() => scrollToSection(link.href)}
-                  className={`text-left px-4 py-3 text-sm font-medium font-display transition-all duration-300 hover:bg-muted/20 hover:pl-6 ${
+                  className={`text-left px-4 py-3 min-h-[44px] flex items-center text-sm font-medium font-display transition-all duration-300 hover:bg-muted/20 hover:pl-6 ${
                     activeSection === link.href.substring(1)
                       ? 'text-foreground bg-muted/10'
                       : 'text-muted-foreground'
