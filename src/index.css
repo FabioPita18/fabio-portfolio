@@ -10,77 +10,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 95%;
-
-    --card: 0 100% 12%;
-    --card-foreground: 0 0% 95%;
-
-    --popover: 0 100% 12%;
-    --popover-foreground: 0 0% 95%;
-
-    --primary: 0 100% 29%;
-    --primary-foreground: 0 0% 95%;
-
-    --secondary: 0 100% 12%;
-    --secondary-foreground: 0 0% 95%;
-
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 70%;
-
-    --accent: 0 100% 50%;
-    --accent-foreground: 0 0% 0%;
-
-    --destructive: 0 72% 50%;
-    --destructive-foreground: 0 85% 97%;
-
-    --border: 0 100% 29%;
-    --input: 0 100% 29%;
-    --ring: 0 100% 50%;
-
-    --radius: 0.75rem;
-
-    --sidebar-background: 0 0% 3%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 0 100% 29%;
-    --sidebar-primary-foreground: 0 0% 95%;
-    --sidebar-accent: 0 100% 50%;
-    --sidebar-accent-foreground: 0 0% 0%;
-    --sidebar-border: 0 100% 29%;
-    --sidebar-ring: 0 100% 50%;
-
-    --chart-1: 0 100% 50%;
-    --chart-2: 0 100% 29%;
-    --chart-3: 0 100% 12%;
-    --chart-4: 0 0% 30%;
-    --chart-5: 0 0% 15%;
-
-    --sidebar: 0 0% 3%;
-
-    --font-sans: 'Ferro Rosso', sans-serif;
-    --font-serif: 'Ferro Rosso', serif;
-    --font-mono: 'Ferro Rosso', monospace;
-
-    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.3);
-    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.3);
-    --shadow-sm: 0 1px 3px 0px hsl(0 100% 50% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.3);
-    --shadow: 0 1px 3px 0px hsl(0 100% 50% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.3);
-    --shadow-md: 0 1px 3px 0px hsl(0 100% 50% / 0.15), 0 2px 4px -1px hsl(0 0% 0% / 0.3);
-    --shadow-lg: 0 1px 3px 0px hsl(0 100% 50% / 0.2), 0 4px 6px -1px hsl(0 0% 0% / 0.3);
-    --shadow-xl: 0 1px 3px 0px hsl(0 100% 50% / 0.2), 0 8px 10px -1px hsl(0 0% 0% / 0.3);
-    --shadow-2xl: 0 1px 3px 0px hsl(0 100% 50% / 0.3);
-
-    --tracking-normal: 0em;
-    --spacing: 0.25rem;
-  }
-
-  .dark {
     --background: 0 0% 0%;
     --foreground: 0 0% 95%;
 
@@ -109,21 +40,11 @@ All colors MUST be HSL.
     --input: 0 100% 29%;
     --ring: 0 100% 50%;
 
-    --sidebar-background: 0 0% 3%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 0 100% 29%;
-    --sidebar-primary-foreground: 0 0% 95%;
-    --sidebar-accent: 0 100% 50%;
-    --sidebar-accent-foreground: 0 0% 0%;
-    --sidebar-border: 0 100% 29%;
-    --sidebar-ring: 0 100% 50%;
+    --radius: 0.75rem;
 
-    --chart-1: 0 100% 50%;
-    --chart-2: 0 100% 29%;
-    --chart-3: 0 100% 12%;
-    --chart-4: 0 0% 30%;
-    --chart-5: 0 0% 15%;
-    --sidebar: 0 0% 3%;
+    --font-sans: 'Ferro Rosso', sans-serif;
+    --font-serif: 'Ferro Rosso', serif;
+    --font-mono: 'Fira Code', 'JetBrains Mono', monospace;
 
     --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.3);
     --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.3);
@@ -138,26 +59,22 @@ All colors MUST be HSL.
     --gradient-card: linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.8) 100%);
     --glow-primary: 0 0 40px hsl(0 100% 50% / 0.3);
     --glow-accent: 0 0 60px hsl(0 100% 50% / 0.2);
-  }
-}
 
-@layer base {
+    --tracking-normal: 0em;
+    --spacing: 0.25rem;
+  }
+
   * {
     @apply border-border;
-    font-family: 'Ferro Rosso', sans-serif !important;
   }
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Ferro Rosso', sans-serif !important;
+    font-family: 'Ferro Rosso', sans-serif;
   }
 
   html {
     scroll-behavior: smooth;
-  }
-
-  h1, h2, h3, h4, h5, h6, p, a, span, button, input, textarea, select, label {
-    font-family: 'Ferro Rosso', sans-serif !important;
   }
 }
 
