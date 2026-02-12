@@ -1,0 +1,277 @@
+@font-face {
+  font-family: 'Ferro Rosso';
+  src: url('/fonts/FerroRosso-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 100% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 100% 12%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 0 100% 29%;
+    --primary-foreground: 0 0% 95%;
+
+    --secondary: 0 100% 12%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 0 100% 50%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 85% 97%;
+
+    --border: 0 100% 29%;
+    --input: 0 100% 29%;
+    --ring: 0 100% 50%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 3%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 100% 29%;
+    --sidebar-primary-foreground: 0 0% 95%;
+    --sidebar-accent: 0 100% 50%;
+    --sidebar-accent-foreground: 0 0% 0%;
+    --sidebar-border: 0 100% 29%;
+    --sidebar-ring: 0 100% 50%;
+
+    --chart-1: 0 100% 50%;
+    --chart-2: 0 100% 29%;
+    --chart-3: 0 100% 12%;
+    --chart-4: 0 0% 30%;
+    --chart-5: 0 0% 15%;
+
+    --sidebar: 0 0% 3%;
+
+    --font-sans: 'Ferro Rosso', sans-serif;
+    --font-serif: 'Ferro Rosso', serif;
+    --font-mono: 'Ferro Rosso', monospace;
+
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.3);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.3);
+    --shadow-sm: 0 1px 3px 0px hsl(0 100% 50% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.3);
+    --shadow: 0 1px 3px 0px hsl(0 100% 50% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.3);
+    --shadow-md: 0 1px 3px 0px hsl(0 100% 50% / 0.15), 0 2px 4px -1px hsl(0 0% 0% / 0.3);
+    --shadow-lg: 0 1px 3px 0px hsl(0 100% 50% / 0.2), 0 4px 6px -1px hsl(0 0% 0% / 0.3);
+    --shadow-xl: 0 1px 3px 0px hsl(0 100% 50% / 0.2), 0 8px 10px -1px hsl(0 0% 0% / 0.3);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 100% 50% / 0.3);
+
+    --tracking-normal: 0em;
+    --spacing: 0.25rem;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 100% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 100% 12%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 0 100% 29%;
+    --primary-foreground: 0 0% 95%;
+
+    --secondary: 0 100% 12%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 0 100% 50%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 85% 97%;
+
+    --border: 0 100% 29%;
+    --input: 0 100% 29%;
+    --ring: 0 100% 50%;
+
+    --sidebar-background: 0 0% 3%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 100% 29%;
+    --sidebar-primary-foreground: 0 0% 95%;
+    --sidebar-accent: 0 100% 50%;
+    --sidebar-accent-foreground: 0 0% 0%;
+    --sidebar-border: 0 100% 29%;
+    --sidebar-ring: 0 100% 50%;
+
+    --chart-1: 0 100% 50%;
+    --chart-2: 0 100% 29%;
+    --chart-3: 0 100% 12%;
+    --chart-4: 0 0% 30%;
+    --chart-5: 0 0% 15%;
+    --sidebar: 0 0% 3%;
+
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.3);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.3);
+    --shadow-sm: 0 1px 3px 0px hsl(0 100% 50% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.3);
+    --shadow: 0 1px 3px 0px hsl(0 100% 50% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.3);
+    --shadow-md: 0 1px 3px 0px hsl(0 100% 50% / 0.15), 0 2px 4px -1px hsl(0 0% 0% / 0.3);
+    --shadow-lg: 0 1px 3px 0px hsl(0 100% 50% / 0.2), 0 4px 6px -1px hsl(0 0% 0% / 0.3);
+    --shadow-xl: 0 1px 3px 0px hsl(0 100% 50% / 0.2), 0 8px 10px -1px hsl(0 0% 0% / 0.3);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 100% 50% / 0.3);
+
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 0% / 0.95) 0%, hsl(0 100% 12% / 0.9) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.8) 100%);
+    --glow-primary: 0 0 40px hsl(0 100% 50% / 0.3);
+    --glow-accent: 0 0 60px hsl(0 100% 50% / 0.2);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    font-family: 'Ferro Rosso', sans-serif !important;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Ferro Rosso', sans-serif !important;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6, p, a, span, button, input, textarea, select, label {
+    font-family: 'Ferro Rosso', sans-serif !important;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+  }
+
+  /* Stagger delays */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+  .stagger-6 { animation-delay: 0.6s; }
+  .stagger-7 { animation-delay: 0.7s; }
+  .stagger-8 { animation-delay: 0.8s; }
+
+  /* Interactive hover effects */
+  .hover-lift {
+    @apply transition-all duration-300 ease-out;
+  }
+  .hover-lift:hover {
+    @apply -translate-y-2 shadow-lg;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-300 ease-out;
+  }
+  .hover-scale:hover {
+    @apply scale-105;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300;
+  }
+  .hover-glow:hover {
+    box-shadow: 0 0 30px hsl(var(--accent) / 0.4);
+  }
+
+  /* Link underline animation */
+  .link-underline {
+    @apply relative;
+  }
+  .link-underline::after {
+    content: '';
+    @apply absolute w-full h-0.5 bottom-0 left-0 bg-accent origin-bottom-right transition-transform duration-300 scale-x-0;
+  }
+  .link-underline:hover::after {
+    @apply origin-bottom-left scale-x-100;
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+  .card-hover:hover {
+    @apply -translate-y-1 border-accent/50;
+    box-shadow: 0 10px 40px -10px hsl(var(--accent) / 0.3);
+  }
+
+  /* Shimmer effect for loading states */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted) / 0.3) 0%,
+      hsl(var(--muted) / 0.5) 50%,
+      hsl(var(--muted) / 0.3) 100%
+    );
+    background-size: 200% 100%;
+    @apply animate-shimmer;
+  }
+
+  /* Opacity for scroll animations (start hidden) */
+  .animate-on-scroll {
+    opacity: 0;
+  }
+  .animate-on-scroll.animated {
+    opacity: 1;
+  }
+
+  /* Progress bar animation */
+  .progress-bar {
+    width: 0;
+    transition: width 1s ease-out;
+  }
+  .progress-bar.animated {
+    width: var(--progress-width);
+  }
+
+  /* Icon spin on hover */
+  .icon-spin:hover svg {
+    @apply transition-transform duration-500;
+    transform: rotate(360deg);
+  }
+
+  /* Gradient border animation */
+  .gradient-border {
+    position: relative;
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .gradient-border:hover::before {
+    opacity: 1;
+  }
+}
