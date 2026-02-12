@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
-import ParticleHero from "@/components/ParticleHero";
+import ParticleBackground from "@/components/ParticleBackground";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated canvas background */}
-      <ParticleHero />
+      <ParticleBackground theme="red" direction="rtl" />
       <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
       
       {/* Content */}

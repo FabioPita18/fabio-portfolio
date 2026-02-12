@@ -7,7 +7,7 @@ const ContactSection = () => {
   const { ref: cardRef, isVisible: cardVisible } = useScrollAnimation({ threshold: 0.2 });
 
   return (
-    <section id="contact" className="py-24 bg-background">
+    <section id="contact" className="relative py-24">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           {/* Section Header */}

@@ -17,7 +17,7 @@ const SkillsSection = () => {
   const { ref: skillsRef, isVisible: skillsVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section id="skills" className="py-24 bg-background">
+    <section id="skills" className="relative py-24">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}

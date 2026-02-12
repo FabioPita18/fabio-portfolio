@@ -40,7 +40,7 @@ const ExperienceSection = () => {
   const { ref: timelineRef, isVisible: timelineVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section id="experience" className="py-24 bg-card/50">
+    <section id="experience" className="relative py-24">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           {/* Section Header */}
