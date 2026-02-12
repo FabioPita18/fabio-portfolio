@@ -1,32 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
-import heroBg from "@/assets/red-hero-bg-image.png";
+import ParticleHero from "@/components/ParticleHero";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 animate-[scale-in_1.5s_ease-out_forwards]"
-        style={{ backgroundImage: `url(${heroBg})` }} />
-
-      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
-      
-      {/* Animated background particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(6)].map((_, i) =>
-        <div
-          key={i}
-          className="absolute w-2 h-2 bg-primary/20 rounded-full animate-float"
-          style={{
-            left: `${15 + i * 15}%`,
-            top: `${20 + i % 3 * 25}%`,
-            animationDelay: `${i * 0.5}s`,
-            animationDuration: `${3 + i * 0.5}s`
-          }} />
-
-        )}
-      </div>
+      {/* Animated canvas background */}
+      <ParticleHero />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
       
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 text-center">
