@@ -125,10 +125,10 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         <nav className={`md:hidden overflow-hidden transition-all duration-500 ease-out ${
-          isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+          isMobileMenuOpen ? 'max-h-[calc(100dvh-4rem)] opacity-100' : 'max-h-0 opacity-0'
         }`}>
-          <div className="py-4 border-t border-border bg-background/95 backdrop-blur-md">
-            <div className="flex flex-col gap-2">
+          <div className="py-4 border-t border-border bg-background/95 backdrop-blur-md overflow-y-auto max-h-[calc(100dvh-5rem)]">
+            <div className="flex flex-col gap-2" style={{ paddingBottom: 'env(safe-area-inset-bottom, 16px)' }}>
               {navLinks.map((link, index) => (
                 <button
                   key={link.href}
