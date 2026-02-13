@@ -248,9 +248,24 @@ const ParticleBackground = ({ theme, direction, mode }: ParticleBackgroundProps)
     initParticles();
     startLoop();
 
+    let prevW = w;
+    let resizeTimer = 0;
+
     const onResize = () => {
-      resize();
-      initParticles();
+      clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        const parent = canvas.parentElement;
+        if (!parent) return;
+        const newW = parent.clientWidth;
+        // Skip height-only changes entirely — mobile address bar show/hide
+        // causes continuous height fluctuations via 100vh. Setting canvas.width
+        // or canvas.height clears the buffer, so we must not touch them.
+        // The parent has overflow-hidden; the small gap is invisible.
+        if (Math.abs(newW - prevW) < 10) return;
+        prevW = newW;
+        resize();
+        initParticles();
+      }, 200);
     };
 
     const parent = canvas.parentElement;
@@ -267,6 +282,7 @@ const ParticleBackground = ({ theme, direction, mode }: ParticleBackgroundProps)
     window.addEventListener("resize", onResize);
     return () => {
       stopLoop();
+      clearTimeout(resizeTimer);
       window.removeEventListener("resize", onResize);
       observer.disconnect();
     };
